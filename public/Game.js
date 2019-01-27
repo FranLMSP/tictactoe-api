@@ -3,17 +3,23 @@ class Chip {
     this.color = color
     this.character = character
   }
+
+  isClean(){ return true }
 }
 
 class Ring extends Chip {
   constructor(color = 'blue', character = 'O') {
     super(color, character)
   }
+
+  isClean(){ return false }
 }
 class Cross extends Chip {
   constructor(color = 'red', character = 'X') {
     super(color, character)
   }
+
+  isClean(){ return false }
 }
 
 class Game {
@@ -54,8 +60,10 @@ class Game {
   }
 
   play(position) {
-    this.board[position.x][position.y] = new this.players[this.turn]()
-    this.newTurn()
+    if(this.board[position.x][position.y].isClean()) {
+      this.board[position.x][position.y] = new this.players[this.turn]()
+      this.newTurn()
+    }
   }
 
   newTurn() {
