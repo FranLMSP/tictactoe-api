@@ -1,11 +1,8 @@
 class User {
   constructor(player = ' ') {
     this.player = player
-    this.currentPosition = {
-      x: 0,
-      y: 0
-    }
-    this.lastPosition = {...this.currentPosition}
+    this.currentPosition = null
+    this.lastPosition = null
 
     this.initEvents()
   }
@@ -17,6 +14,7 @@ class User {
   }
 
   playEvent() {
+    const user = this
     document.getElementById('btnPlay').addEventListener('click', function() {
       const event = new CustomEvent('putChip', {
         detail: {
@@ -59,7 +57,7 @@ class User {
   }
 
   getPosition() {
-    return {...this.currentPosition}
+    return this.currentPosition ? {...this.currentPosition} : null
   }
 
   getLastPosition() {
