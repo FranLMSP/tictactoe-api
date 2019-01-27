@@ -43,9 +43,11 @@ class Game {
       const data = {...e.detail}
       console.log(data)
       const position = {...data.position}
+      const lastPosition = {...data.lastPosition}
       if(this.board[position.x][position.y].isClean()) {
         this.board[position.x][position.y] = new this.players[data.player]()
         this.drawChip(position, data.element, true)
+        this.cleanChip(lastPosition)
       }
     })
   }
@@ -55,6 +57,12 @@ class Game {
     element.innerHTML = chip.character
     element.style.color = chip.color
     element.style.opacity = temp ? "0.5" : "1.0"
+  }
+
+  cleanChip(position) {
+    this.board[position.x][position.y] = new this.players[' ']()
+    const element = document.querySelector('[data-x="'+position.x+'"][data-y="'+position.y+'"]')
+    this.drawChip(position, element, false)
   }
 
   play(position) {

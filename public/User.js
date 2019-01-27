@@ -1,6 +1,10 @@
 class User {
   constructor(player = ' ') {
     this.player = player
+    this.lastPosition = {
+      x: 0,
+      y: 0
+    }
     this.currentPosition = {
       x: 0,
       y: 0
@@ -33,6 +37,7 @@ class User {
     const user = this
     for(let i = 0; i < targets.length; i++) {
       targets[i].addEventListener('click', function() {
+        user.lastPosition = {...user.currentPosition}
         const position = {
           x: this.dataset.x,
           y: this.dataset.y
@@ -43,6 +48,7 @@ class User {
           detail: {
             player: user.getPlayer(),
             position: user.getPosition(),
+            lastPosition: user.getLastPosition(),
             element: targets[i]
           }
         })
@@ -55,6 +61,10 @@ class User {
 
   getPosition() {
     return {...this.currentPosition}
+  }
+
+  getLastPosition() {
+    return {...this.lastPosition}
   }
 
   setPlayer(player) {
