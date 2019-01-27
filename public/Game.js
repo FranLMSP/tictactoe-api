@@ -49,6 +49,8 @@ class Game {
         }
         this.board[position.x][position.y] = new this.players[data.player]()
         this.drawChip(data.position, true)
+      } else {
+        data.user.revertPosition()
       }
     })
 
@@ -57,10 +59,9 @@ class Game {
       console.log(data)
       if(data.position) {
         const position = {...data.position}
-        if(this.board[position.x][position.y].isClean()) {
-          this.board[position.x][position.y] = new this.players[data.player]()
-          this.drawChip(data.position, false)
-        }
+        this.board[position.x][position.y] = new this.players[data.player]()
+        this.drawChip(data.position, false)
+
       }
     })
   }

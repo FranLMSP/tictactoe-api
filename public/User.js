@@ -24,6 +24,9 @@ class User {
       })
 
       document.dispatchEvent(event)
+
+      user.currentPosition = null
+      user.lastPosition = null
     })
   }
 
@@ -46,6 +49,7 @@ class User {
             player: user.getPlayer(),
             position: user.getPosition(),
             lastPosition: user.getLastPosition(),
+            user: user
           }
         })
 
@@ -54,6 +58,11 @@ class User {
 
       })
     }
+  }
+
+  revertPosition() {
+    this.currentPosition = this.getLastPosition()
+    this.lastPosition = null
   }
 
   getPosition() {
