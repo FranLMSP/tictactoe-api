@@ -24,3 +24,31 @@ td:hover {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.btn {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#btnPlay {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 20pt;
+}
+
+#btnPlay[disabled] {
+  background-color: blue;
+  cursor: default;
+  color: white;
+  border: none;
+  padding: 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 20pt;
+  opacity: 0.5;
+}
