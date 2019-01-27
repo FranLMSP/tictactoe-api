@@ -1,0 +1,12 @@
+table {
+  margin: auto;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+}
+
+td:hover {
+  cursor: pointer;
+}
