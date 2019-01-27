@@ -37,13 +37,19 @@ class Game {
     const game = this
     for(let i = 0; i < targets.length; i++) {
       targets[i].addEventListener('click', function() {
-        game.play({
+        const position = {
           x: this.dataset.x,
           y: this.dataset.y
-        })
+        }
+        game.play(position)
+        game.drawChip(position, this)
       })
     }
+  }
 
+  drawChip(position, element) {
+    const chip = this.board[position.x][position.y]
+    element.innerHTML = chip.character
   }
 
   play(position) {
