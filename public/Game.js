@@ -24,12 +24,26 @@ class Game {
       'o': Ring,
       ' ': Chip
     }
-
     this.turn = 'x'
+    this.initEvents()
   }
 
   initBoard() {
     this.board = Array(3).fill().map( () => Array(3).fill().map( () => new Chip() ) )
+  }
+
+  initEvents() {
+    const targets = document.querySelectorAll('td')
+    const game = this
+    for(let i = 0; i < targets.length; i++) {
+      targets[i].addEventListener('click', function() {
+        game.play({
+          x: this.dataset.x,
+          y: this.dataset.y
+        })
+      })
+    }
+
   }
 
   play(position) {
