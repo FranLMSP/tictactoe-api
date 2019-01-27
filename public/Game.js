@@ -24,14 +24,27 @@ class Game {
       'o': Ring,
       ' ': Chip
     }
+
+    this.turn = 'x'
   }
 
   initBoard() {
     this.board = Array(3).fill().map( () => Array(3).fill().map( () => new Chip() ) )
   }
 
-  play(position, player = ' ') {
-    this.board[position.x][position.y] = new this.players[player.toLowerCase()]()
+  play(position) {
+    this.board[position.x][position.y] = new this.players[this.turn]()
+    this.newTurn()
   }
+
+  newTurn() {
+    if(this.turn == 'x') {
+      this.turn = 'o'
+    } else {
+      this.turn = 'x'
+    }
+  }
+
+
 
 }
