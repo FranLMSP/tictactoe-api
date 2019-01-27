@@ -43,26 +43,28 @@ class Game {
       const data = {...e.detail}
       console.log(data)
       const position = {...data.position}
-      const lastPosition = {...data.lastPosition}
       if(this.board[position.x][position.y].isClean()) {
+        this.cleanChip(data.lastPosition)
         this.board[position.x][position.y] = new this.players[data.player]()
-        this.drawChip(position, data.element, true)
-        this.cleanChip(lastPosition)
+        this.drawChip(data.position, true)
       }
     })
   }
 
-  drawChip(position, element, temp = false) {
+  drawChip(position, temp = false) {
     const chip = this.board[position.x][position.y]
+    const element = document.querySelector('[data-x="'+position.x+'"][data-y="'+position.y+'"]')
     element.innerHTML = chip.character
     element.style.color = chip.color
     element.style.opacity = temp ? "0.5" : "1.0"
   }
 
   cleanChip(position) {
-    this.board[position.x][position.y] = new this.players[' ']()
+    const chip = new Chip()
     const element = document.querySelector('[data-x="'+position.x+'"][data-y="'+position.y+'"]')
-    this.drawChip(position, element, false)
+    element.innerHTML = chip.character
+    element.style.color = chip.color
+    this.board[position.x][position.y] = chip
   }
 
   play(position) {

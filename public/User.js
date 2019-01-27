@@ -1,14 +1,11 @@
 class User {
   constructor(player = ' ') {
     this.player = player
-    this.lastPosition = {
-      x: 0,
-      y: 0
-    }
     this.currentPosition = {
       x: 0,
       y: 0
     }
+    this.lastPosition = {...this.currentPosition}
 
     this.initEvents()
   }
@@ -37,11 +34,13 @@ class User {
     const user = this
     for(let i = 0; i < targets.length; i++) {
       targets[i].addEventListener('click', function() {
-        user.lastPosition = {...user.currentPosition}
+
         const position = {
           x: this.dataset.x,
           y: this.dataset.y
         }
+
+        user.lastPosition = user.getPosition()
         user.currentPosition = position
 
         const event = new CustomEvent('tempChip', {
@@ -49,9 +48,9 @@ class User {
             player: user.getPlayer(),
             position: user.getPosition(),
             lastPosition: user.getLastPosition(),
-            element: targets[i]
           }
         })
+
 
         document.dispatchEvent(event)
 
@@ -64,7 +63,7 @@ class User {
   }
 
   getLastPosition() {
-    return {...this.lastPosition}
+    return this.lastPosition ? {...this.lastPosition} : null
   }
 
   setPlayer(player) {
