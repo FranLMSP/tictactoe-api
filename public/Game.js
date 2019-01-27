@@ -39,24 +39,22 @@ class Game {
   }
 
   initEvents() {
-    const targets = document.querySelectorAll('td')
-    const game = this
-    for(let i = 0; i < targets.length; i++) {
-      targets[i].addEventListener('click', function() {
-        const position = {
-          x: this.dataset.x,
-          y: this.dataset.y
-        }
-        game.play(position)
-        game.drawChip(position, this)
-      })
-    }
+    document.addEventListener('tempChip', e => {
+      const data = {...e.detail}
+      console.log(data)
+      const position = {...data.position}
+      if(this.board[position.x][position.y].isClean()) {
+        this.board[position.x][position.y] = new this.players[data.player]()
+        this.drawChip(position, data.element, true)
+      }
+    })
   }
 
-  drawChip(position, element) {
+  drawChip(position, element, temp = false) {
     const chip = this.board[position.x][position.y]
     element.innerHTML = chip.character
     element.style.color = chip.color
+    element.style.opacity = temp ? "0.5" : "1.0"
   }
 
   play(position) {

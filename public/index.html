@@ -23,11 +23,13 @@
       </tr>
     </table>
 
-    <<button type="button" id="btnPlay">Play!</button>
+    <button type="button" id="btnPlay">Play!</button>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/Game.js"></script>
+    <script src="/User.js"></script>
     <script>
       window.onload = () => {
+        user = new User('x')
         game = new Game()
       }
     </script>
