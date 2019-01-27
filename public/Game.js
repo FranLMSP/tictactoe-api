@@ -50,6 +50,7 @@ class Game {
   drawChip(position, element) {
     const chip = this.board[position.x][position.y]
     element.innerHTML = chip.character
+    element.style.color = chip.color
   }
 
   play(position) {
