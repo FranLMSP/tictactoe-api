@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/FranLMSP/tictactoe-api.git"
+    "type": "git",
+    "url": "https://github.com/FranLMSP/tictactoe-api.git"
   },
   "keywords": [
     "tictactoe",
@@ -20,5 +20,10 @@
     "game"
   ],
   "author": "Franco Colmenarez",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13",
+    "socket.io": "^2.2.0"
+  }
 }
