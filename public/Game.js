@@ -7,24 +7,31 @@ class Chip {
 
 class Ring extends Chip {
   constructor(color = 'blue', character = 'O') {
-    this.constructor(color, character)
+    super(color, character)
   }
 }
 class Cross extends Chip {
   constructor(color = 'red', character = 'X') {
-    this.constructor(color, character)
+    super(color, character)
   }
 }
 
 class Game {
   constructor() {
     this.initBoard()
+    this.players = {
+      'x': Cross,
+      'o': Ring,
+      ' ': Chip
+    }
   }
 
   initBoard() {
-    this.board = Array(3).fill().map( () => {
-      return Array(3).fill().map( () => new Chip())
-    })
+    this.board = Array(3).fill().map( () => Array(3).fill().map( () => new Chip() ) )
+  }
+
+  play(position, player = ' ') {
+    this.board[position.x][position.y] = new this.players[player.toLowerCase()]()
   }
 
 }
