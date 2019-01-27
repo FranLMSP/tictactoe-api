@@ -1,8 +1,15 @@
-var express = require('express');
-var app = express();
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-  res.send('hello world');
+  res.sendFile(__dirname + '/public' + '/index.html');
 });
 
-app.listen(3000);
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
