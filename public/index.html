@@ -21,6 +21,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
+      messages = document.getElementById('messages')
 
       function send(e) {
         event.preventDefault()
@@ -28,6 +29,14 @@
         socket.emit('chat message', message.value)
         message.value = ''
       }
+
+      socket.on('new message', function(msg) {
+        const node = document.createElement('li')
+        const text = document.createTextNode(msg)
+        node.appendChild(text)
+
+        messages.appendChild(node)
+      })
     </script>
   </body>
 </html>
