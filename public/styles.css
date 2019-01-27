@@ -5,8 +5,22 @@ table {
 td {
   width: 100px;
   height: 100px;
+  text-align: center;
+  font-size: 50pt;
+
+  /* Disable text highlight */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }
 
 td:hover {
   cursor: pointer;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
